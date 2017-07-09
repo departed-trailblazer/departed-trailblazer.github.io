@@ -3,17 +3,19 @@
 <head>
   <meta charset="utf-8">
   
-  <title>男神的技术部落</title>
+  <title>git常用命令 | 男神的技术部落</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="别在意名字，男神是别人给起的外号，这么高大上的外号，必须要用啊！！！😄😄">
-<meta property="og:type" content="website">
-<meta property="og:title" content="男神的技术部落">
-<meta property="og:url" content="http://http://departed-trailblazer.github.io/index.html">
+  <meta name="description" content="远程仓库相关命令检出仓库：git clone [your repository] 查看远程仓库：git remote -v 添加远程仓库：git remote add [name] [url] 删除远程仓库：git remote rm [name] 修改远程仓库：git remote set-url --push[name] [newUrl] 拉取远程仓库修改：git pull [remoteNa">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git常用命令">
+<meta property="og:url" content="http://http://departed-trailblazer.github.io/2017/07/09/git常用命令/index.html">
 <meta property="og:site_name" content="男神的技术部落">
-<meta property="og:description" content="别在意名字，男神是别人给起的外号，这么高大上的外号，必须要用啊！！！😄😄">
+<meta property="og:description" content="远程仓库相关命令检出仓库：git clone [your repository] 查看远程仓库：git remote -v 添加远程仓库：git remote add [name] [url] 删除远程仓库：git remote rm [name] 修改远程仓库：git remote set-url --push[name] [newUrl] 拉取远程仓库修改：git pull [remoteNa">
+<meta property="og:updated_time" content="2017-07-09T02:30:39.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="男神的技术部落">
-<meta name="twitter:description" content="别在意名字，男神是别人给起的外号，这么高大上的外号，必须要用啊！！！😄😄">
+<meta name="twitter:title" content="git常用命令">
+<meta name="twitter:description" content="远程仓库相关命令检出仓库：git clone [your repository] 查看远程仓库：git remote -v 添加远程仓库：git remote add [name] [url] 删除远程仓库：git remote rm [name] 修改远程仓库：git remote set-url --push[name] [newUrl] 拉取远程仓库修改：git pull [remoteNa">
   
     <link rel="alternate" href="/atom.xml" title="男神的技术部落" type="application/atom+xml">
   
@@ -62,9 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-git常用命令" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/07/09/git常用命令/" class="article-date">
   <time datetime="2017-07-09T02:30:03.000Z" itemprop="datePublished">2017-07-09</time>
@@ -77,8 +77,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/09/git常用命令/">git常用命令</a>
+    <h1 class="article-title" itemprop="name">
+      git常用命令
     </h1>
   
 
@@ -116,61 +116,19 @@
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="posts-关于App重构的思考" class="article article-type-posts" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/07/07/关于App重构的思考/" class="article-date">
-  <time datetime="2017-07-07T09:53:57.000Z" itemprop="datePublished">2017-07-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/07/关于App重构的思考/">关于App重构的思考</a>
-    </h1>
+    <a href="/2017/07/07/关于App重构的思考/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于App重构的思考</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在工作中我们都会遇到代码重构的问题，很多人认为重构就是重写，一接手项目，看两眼代码或者看都懒得看，就要求重构。这实在是有些不慎重了，于是关于重构，我有了一些思考。</p>
-<h4 id="1-为什么要重构"><a href="#1-为什么要重构" class="headerlink" title="1.为什么要重构"></a>1.为什么要重构</h4><p>我们经常提到项目重构，那我们到底为什么要进行重构呢？一般有几个原因。<br></p>
-<ol>
-<li>忍受不了难以阅读的代码。<br></li>
-<li>旧有框架难以满足新的需求，难易扩展，易用性差。<br></li>
-<li>旧有框架难以支撑业务的快速发展。<br></li>
-<li>通过重构来熟悉业务逻辑。</li>
-</ol>
-<h4 id="2-重构的准备"><a href="#2-重构的准备" class="headerlink" title="2.重构的准备"></a>2.重构的准备</h4><p>在开始重构之前，我们是应该有所准备的，那就是要先阅读原有的代码。不管原有的代码有多难读懂，你有多难忍受它，你也必须先阅读原有代码，因为从正在运行的代码中才能最好的了解现有的业务逻辑。<br><br>可能你有文档，可以从文档中了解业务逻辑，没必要去阅读那些烂代码，但是，文档可能会更新不及时，但是运行的代码是不会有这个问题的，阅读原有代码是必不可少的。<br><br>而了解了整体的业务之后，你就可以开始重构了。</p>
-<h4 id="3-重构的方法"><a href="#3-重构的方法" class="headerlink" title="3.重构的方法"></a>3.重构的方法</h4><p>重构是一个艰难的循环的过程，并不会一步到位，除非项目已经到了该停止更新维护的阶段。尤其对于初创团队来说，需求的更改，业务的变动，甚至整个发展方向都可能变动的情况下，更是如此。很多人认为重构就是把项目整个重写一遍。其实重写和重构是有区别的。<br>重构应该是一个循序渐进，由小及大，量变引起质变的过程。当你想要对项目进行重构时，不妨把项目中需要重构的模块一个一个列出来，排出优先级，然后一个一个地进行重构，而所有的模块都重构完毕后，你的项目就应该焕然一新了。可能重构过程中或重构完成后，新的需求或业务调整让你现有的架构有些力不从心，那么，新一轮的重构就又该开始了。但不管怎样，重构的方向一定是让项目越来也好，且和业务越来越适合的。</p>
-<h4 id="4-重构的时间"><a href="#4-重构的时间" class="headerlink" title="4.重构的时间"></a>4.重构的时间</h4><p>一般来说，如果是一个正常维护中的项目是不会有大量集中的时间用来重构的，那么什么时间进行重构呢？上面也说道，重构是一个循序渐进的过程，并不是一蹴而就的，下面就建议几个比较适合进行重构的时间点。<br>第一个是刚刚接手项目的时候，一般这个时候都是有时间熟悉项目的，这个时间是非常重要的，如果想要重构的话，你要在这个时间里阅读原有代码和文档，熟悉整体业务，列出重构计划，如果时间充足的话，可以进行一部分重构的工作，建议从网络，界面结构，基础模型，工具分类等这些基础模块开始。<br></p>
-<p>第二个时间点是项目交付测试后的时间，这部分时间，bug的修改一般是很少能占满你的时间的，那就可以把这些细碎的时间利用一下，重新建一个分支，在新分支上进行某个模块的重构工作，当然，这个分支上的提交应该是要留到下个版本再合并的。<br></p>
-<p>第三个就是原有代码难以满足新的需求时，那么就需要在新需求的开发计划中单独留有重构的时间了。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://http://departed-trailblazer.github.io/2017/07/07/关于App重构的思考/" data-id="cj4w3sdhx000106fybzyiy8dk" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
