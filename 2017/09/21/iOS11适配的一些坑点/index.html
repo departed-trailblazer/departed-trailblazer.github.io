@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>iOS11适配的一些坑点 | 男神的技术部落</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="iOS11 界面适配的一些坑点一. heightForFooterInSection:``` ```tableView: heightForHeaderInSection:``` 代理方法不调用123**原因:** iOS11 tableView 开启Self-Sizing 当你的组头视图或组尾视图为nil时，不调用上述两个方法，而是使用预估高度来设置组头和组尾高度。**解决方法:** 实现```">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS11适配的一些坑点">
+<meta property="og:url" content="http://http://departed-trailblazer.github.io/2017/09/21/iOS11适配的一些坑点/index.html">
+<meta property="og:site_name" content="男神的技术部落">
+<meta property="og:description" content="iOS11 界面适配的一些坑点一. heightForFooterInSection:``` ```tableView: heightForHeaderInSection:``` 代理方法不调用123**原因:** iOS11 tableView 开启Self-Sizing 当你的组头视图或组尾视图为nil时，不调用上述两个方法，而是使用预估高度来设置组头和组尾高度。**解决方法:** 实现```">
+<meta property="og:updated_time" content="2017-09-21T03:32:09.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS11适配的一些坑点">
+<meta name="twitter:description" content="iOS11 界面适配的一些坑点一. heightForFooterInSection:``` ```tableView: heightForHeaderInSection:``` 代理方法不调用123**原因:** iOS11 tableView 开启Self-Sizing 当你的组头视图或组尾视图为nil时，不调用上述两个方法，而是使用预估高度来设置组头和组尾高度。**解决方法:** 实现```">
+  
+    <link rel="alternate" href="/atom.xml" title="男神的技术部落" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">男神的技术部落</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <!-- <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav> -->
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://http://departed-trailblazer.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-iOS11适配的一些坑点" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/21/iOS11适配的一些坑点/" class="article-date">
+  <time datetime="2017-09-21T03:31:21.000Z" itemprop="datePublished">2017-09-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      iOS11适配的一些坑点
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="iOS11-界面适配的一些坑点"><a href="#iOS11-界面适配的一些坑点" class="headerlink" title="iOS11 界面适配的一些坑点"></a>iOS11 界面适配的一些坑点</h3><h4 id="一"><a href="#一" class="headerlink" title="一. "></a>一. <figure class="highlight plain"><figcaption><span>heightForFooterInSection:``` ```tableView: heightForHeaderInSection:``` 代理方法不调用</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">**原因:** iOS11 tableView 开启Self-Sizing 当你的组头视图或组尾视图为nil时，不调用上述两个方法，而是使用预估高度来设置组头和组尾高度。</div><div class="line">**解决方法:** 实现```tableView: viewForHeader``` 和```tableView: viewForFooter```方法，返回一个UIView对象。或者将tableView组头和组尾的预估高度设为0.</div><div class="line">&gt;</div></pre></td></tr></table></figure></h4><p>tableView.estimatedSectionHeaderHeight = 0;<br>tableView.estimatedSectionFooterHeight = 0;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">  </div><div class="line">### 二. ```[tableView setcontentOffSet]```位置不准确</div><div class="line">**原因:**  这里会取出所有Cell的高计算contentSize然后再滑动到offSet的位置  但是iOS11 默认开启了tableView的Self-Sizing 计算未展示过的cell的高度时是使用预估高度进行计算而不是实际高度。  </div><div class="line">**解决方法:** ```tableView.estimatedRowHeight = 0;</div></pre></td></tr></table></figure></p>
+<h3 id="三-iPhoneX-StatusBar-高度适配"><a href="#三-iPhoneX-StatusBar-高度适配" class="headerlink" title="三.iPhoneX StatusBar 高度适配"></a>三.iPhoneX StatusBar 高度适配</h3><p><strong>原因:</strong> 这个原因不说大家也都懂的，苹果大大要做全屏幕，但是显然技术上还不能把听筒和传感器的位置取代掉，所以了，就有了这个齐刘海的StatusBar。这里真的要吐槽一下这个齐刘海的手机外形，那一小块我觉得绝对可以逼死强迫症了，这让我觉得苹果在产品上已经不再追求完美了，开始降低对自己产品的苛刻要求了，小失落。。。 </p>
+<p><strong>解决方案:</strong> 这还有啥说的，别偷懒，把项目中用到的20，64，44这些常量换成 <code>[UIApplication sharedApplication].statusBarFrame.size.height</code> <code>self.navigationController.navigationBar.frame.size.height</code>这些系统获取的高度，尽量使用autoLayout，可以把这些写成宏定义或者写进分类方法，看自己习惯了。</p>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>  暂时只踩了这些坑，之后会不定期更新，如果有同学遇到其他问题，欢迎联系：402178719@qq.com</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://http://departed-trailblazer.github.io/2017/09/21/iOS11适配的一些坑点/" data-id="cj7twj3j900010ps6nlb0w5ay" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/08/31/使用GCDAsyncSocket进行通信的完整流程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">使用GCDAsyncSocket的完整流程（一）</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术文章/">技术文章</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/08/">August 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">July 2017</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/21/iOS11适配的一些坑点/">iOS11适配的一些坑点</a>
+          </li>
+        
+          <li>
+            <a href="/2017/08/31/使用GCDAsyncSocket进行通信的完整流程/">使用GCDAsyncSocket的完整流程（一）</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/09/git常用命令/">git常用命令</a>
+          </li>
+        
+          <li>
+            <a href="/2017/07/07/关于App重构的思考/">关于App重构的思考</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 MaCong<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
