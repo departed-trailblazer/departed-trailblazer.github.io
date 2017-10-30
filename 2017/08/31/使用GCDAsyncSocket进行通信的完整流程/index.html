@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://http://departed-trailblazer.github.io/2017/08/31/使用GCDAsyncSocket进行通信的完整流程/index.html">
 <meta property="og:site_name" content="男神的技术部落">
 <meta property="og:description" content="最近项目中用到了socket通信，于是使用了GCDAsyncSocket进行通信模块的开发。使用中也遇到了一些问题，下面做一下总结，说一说整个通讯的流程以及整个过程中踩到的坑。 引用首先使用cocoapods引入CocoaAsyncSocket第三方库，然后引入头文件,并且遵守GCDAsyncSocketDelegate协议 1#import &amp;lt;CocoaAsyncSocket/GCDAsy">
-<meta property="og:updated_time" content="2017-08-31T08:33:23.000Z">
+<meta property="og:updated_time" content="2017-10-30T06:56:47.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用GCDAsyncSocket的完整流程（一）">
 <meta name="twitter:description" content="最近项目中用到了socket通信，于是使用了GCDAsyncSocket进行通信模块的开发。使用中也遇到了一些问题，下面做一下总结，说一说整个通讯的流程以及整个过程中踩到的坑。 引用首先使用cocoapods引入CocoaAsyncSocket第三方库，然后引入头文件,并且遵守GCDAsyncSocketDelegate协议 1#import &amp;lt;CocoaAsyncSocket/GCDAsy">
@@ -51,9 +51,9 @@
       </nav>
       <!-- <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
       </nav> -->
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://http://departed-trailblazer.github.io"></form>
@@ -106,12 +106,12 @@
 <p>连接成功后开始发送心跳包，使用定时器进行心跳包的定时发送，这里需要注意，定时器的执行是依赖于runloop的，而这个回调方法是在子线程中执行，子线程是没有启动runloop的，所以一定要把定时器添加到主线程的runloop中<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">self.pulseTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(sendPulseMsg) userInfo:nil repeats:YES];</div><div class="line">   [[NSRunLoop mainRunLoop]addTimer:self.pulseTimer forMode:NSRunLoopCommonModes];</div><div class="line">   [self.pulseTimer fire];</div></pre></td></tr></table></figure></p>
 <h4 id="重连"><a href="#重连" class="headerlink" title="重连"></a>重连</h4><p>如果连接失败会回调断开连接的代理方法<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">- (void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err;</div></pre></td></tr></table></figure></p>
 <p>如果是手动断开的话，这里的err是nil，如果不是手动断开，那可能由于网络原因未能连接成功，那么可以在这里执行重连操作，这里也需要注意，如果重连有时间间隔，比如断开连接5秒后重连，那么这里也需要异步到主线程中去，原因和心跳定时器是一样的，这里就不多说了。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">dispatch_async(dispatch_get_main_queue(), ^&#123;</div><div class="line">      [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(socketReconnect) userInfo:nil repeats:NO];</div><div class="line">  &#125;);</div></pre></td></tr></table></figure></p>
-<h4 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h4><p>好了，到此为止，我们就完成了socket最基本的连接，心跳，重连的流程，下一步就应该进行数据传输了，其中涉及到的封包和解包，以及对粘包和半包的处理，我会在下一篇博文中进行分享。</p>
-
+<h4 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h4><pre><code>到此为止，就完成了socket最基本的连接，心跳，重连的流程，下一步就应该进行数据传输了，其中涉及到的封包和解包，以及对粘包和半包的处理，之后再进行整理。
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://http://departed-trailblazer.github.io/2017/08/31/使用GCDAsyncSocket进行通信的完整流程/" data-id="cj7twj3jh00040ps68p8gspwn" class="article-share-link">Share</a>
+      <a data-url="http://http://departed-trailblazer.github.io/2017/08/31/使用GCDAsyncSocket进行通信的完整流程/" data-id="cj9du0awc0004mgs68ttjhbbt" class="article-share-link">Partager</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
@@ -123,7 +123,7 @@
 <nav id="article-nav">
   
     <a href="/2017/09/21/iOS11适配的一些坑点/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Récent</strong>
       <div class="article-nav-title">
         
           iOS11适配的一些坑点
@@ -133,7 +133,7 @@
   
   
     <a href="/2017/07/09/git常用命令/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Ancien</strong>
       <div class="article-nav-title">git常用命令</div>
     </a>
   
@@ -148,7 +148,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Catégories</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/技术文章/">技术文章</a></li></ul>
     </div>
@@ -158,7 +158,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Mot-clés</h3>
     <div class="widget">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/iOS/">iOS</a></li></ul>
     </div>
@@ -178,7 +178,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Articles récents</h3>
     <div class="widget">
       <ul>
         
@@ -211,7 +211,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 MaCong<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
