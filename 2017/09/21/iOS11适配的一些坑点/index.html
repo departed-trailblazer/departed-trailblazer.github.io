@@ -86,7 +86,7 @@
 <meta property="og:url" content="http://http://departed-trailblazer.github.io/2017/09/21/iOS11适配的一些坑点/index.html">
 <meta property="og:site_name" content="departed-trailblazer">
 <meta property="og:description" content="iOS11 界面适配的坑点一. tableView: heightForFooterInSection:和 tableView: heightForHeaderInSection: 代理方法不调用原因: iOS11 tableView 开启Self-Sizing 当你的组头视图或组尾视图为nil时，不调用上述两个方法，而是使用预估高度来设置组头和组尾高度。">
-<meta property="og:updated_time" content="2017-10-30T11:41:00.000Z">
+<meta property="og:updated_time" content="2018-01-17T03:10:34.355Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="iOS11适配的一些坑点">
 <meta name="twitter:description" content="iOS11 界面适配的坑点一. tableView: heightForFooterInSection:和 tableView: heightForHeaderInSection: 代理方法不调用原因: iOS11 tableView 开启Self-Sizing 当你的组头视图或组尾视图为nil时，不调用上述两个方法，而是使用预估高度来设置组头和组尾高度。">
@@ -356,7 +356,7 @@
 <p><strong>解决方法:</strong><br><code>tableView.estimatedRowHeight = 0;</code></p>
 <h3 id="三-iPhoneX-StatusBar-高度适配"><a href="#三-iPhoneX-StatusBar-高度适配" class="headerlink" title="三.iPhoneX StatusBar 高度适配"></a>三.iPhoneX StatusBar 高度适配</h3><p><strong>原因:</strong><br>  这个原因不说大家也都懂的，苹果大大要做全屏幕，但是显然技术上还不能把听筒和传感器的位置取代掉，所以了，就有了这个齐刘海的StatusBar。这里真的要吐槽一下这个齐刘海的手机外形，那一小块我觉得绝对可以逼死强迫症了，这让我觉得苹果在产品上已经不再追求完美了，开始降低对自己产品的苛刻要求了，小失落。。。</p>
 <p><strong>解决方案:</strong><br>  这还有啥说的，别偷懒，把项目中用到的20，64，44这些常量换成 <code>[UIApplication sharedApplication].statusBarFrame.size.height</code>、<br><code>self.navigationController.navigationBar.frame.size.height</code>这些系统获取的高度，尽量使用autoLayout，可以把这些写成宏定义或者写进分类方法，看自己习惯了。</p>
-<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>  暂时只踩了这些坑，之后会不定期更新，如果有同学遇到其他问题，欢迎联系：402178719@qq.com</p>
+<h3 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h3><p>  暂时只踩了这些坑，之后会不定期更新，如果有同学遇到其他问题，欢迎联系QQ：402178719</p>
 
       
     </div>
@@ -387,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/31/使用GCDAsyncSocket进行通信的完整流程/" rel="next" title="使用GCDAsyncSocket的完整流程（一）">
-                <i class="fa fa-chevron-left"></i> 使用GCDAsyncSocket的完整流程（一）
+              <a href="/2017/09/12/使用GCDAsyncSocket的完整流程（二）/" rel="next" title="使用GCDAsyncSocket的完整流程（二）">
+                <i class="fa fa-chevron-left"></i> 使用GCDAsyncSocket的完整流程（二）
               </a>
             
           </div>
@@ -476,7 +476,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
